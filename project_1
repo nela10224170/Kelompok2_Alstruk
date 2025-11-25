@@ -1,0 +1,65 @@
+database = []
+
+def tampilkan_menu():
+    print("=== PROGRAM PERPUSTAKAAN SEDERHANA ===")
+    print("1. Tampilkan Data")
+    print("2. Tambah Data")
+    print("3. Update Data")
+    print("4. Hapus Data")
+    print("5. Keluar")
+
+def tampilkan_data():
+    if len(database) == 0:
+        print("Belum ada data.")
+    else:
+        for i, buku in enumerate(database):
+            print(f"{i+1}. {buku}")
+
+def tambah_data():
+    judul = input("Masukkan judul buku: ")
+    database.append(judul)
+    print("Data berhasil ditambah!")
+
+def update_data():
+    tampilkan_data()
+    if len(database) == 0:
+        return
+    index = int(input("Pilih nomor data yang mau diupdate: ")) - 1
+    if 0 <= index < len(database):
+        judul_baru = input("Masukkan judul baru: ")
+        database[index] = judul_baru
+        print("Data berhasil diupdate!")
+    else:
+        print("Nomor tidak valid.")
+
+def hapus_data():
+    tampilkan_data()
+    if len(database) == 0:
+        return
+    index = int(input("Pilih nomor data yang mau dihapus: ")) - 1
+    if 0 <= index < len(database):
+        database.pop(index)
+        print("Data berhasil dihapus!")
+    else:
+        print("Nomor tidak valid.")
+
+while True:
+    tampilkan_menu()
+    pilihan = input("Pilih menu (1-5): ")
+
+    match pilihan:
+        case "1":
+            tampilkan_data()
+        case "2":
+            tambah_data()
+        case "3":
+            update_data()
+        case "4":
+            hapus_data()
+        case "5":
+            print("Program selesai.")
+            break
+        case _:
+            print("Pilihan tidak valid.")
+
+    print()
